@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="x-icon" href="main_logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap" rel="stylesheet">
+    <title>Welcome</title>
+    <style>
+        body {
+            background-color: rgb(20, 20, 20);
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #e0e0e0;
+        }
+
+        .banner-container {
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .banner-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 1s ease;
+        }
+
+        .banner-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            flex: 1;
+            overflow: auto;
+        }
+
+        .section {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: rgb(40, 40, 40);
+            border-radius: 12px;
+            margin: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transition: box-shadow 1s ease, transform 1s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+            transform: scale(1.02);
+        }
+
+        .contact-section img,
+        .download-section img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
+            transition: transform 1s ease;
+            filter: invert(100%); /* White color */
+        }
+
+        .contact-text,
+        .download-text,
+        .social-text {
+            font-size: 22px;
+            color: #e0e0e0;
+            margin-bottom: 10px;
+            font-weight: bold;
+            transition: color 1s ease;
+            text-align: center;
+        }
+
+        .contact-email {
+            font-size: 18px;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+            text-align: center;
+        }
+
+        .contact-email:hover {
+            color: #00bfff;
+            transform: scale(1.1);
+        }
+
+        .contact-email .popup {
+            visibility: hidden;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: opacity 0.3s ease;
+            opacity: 0;
+            white-space: nowrap;
+        }
+
+        .contact-email:hover .popup {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .github-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .github-section img {
+            width: 30px;
+            height: 30px;
+            filter: invert(100%); /* White color */
+            cursor: pointer;
+        }
+
+        .github-section span {
+            font-size: 18px;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .github-section span:hover,
+        .github-section img:hover {
+            color: #00bfff;
+            transform: scale(1.1);
+        }
+
+        .download-link {
+            font-size: 18px;
+            color: #00bfff;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+        }
+
+        .download-link:hover {
+            color: #009acd;
+            transform: scale(1.1);
+        }
+
+        .download-link .popup {
+            visibility: hidden;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: opacity 0.3s ease;
+            opacity: 0;
+            white-space: nowrap;
+        }
+
+        .download-link:hover .popup {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .social-section {
+            flex-direction: column;
+        }
+
+        .social-section .social-text {
+            margin-bottom: 20px;
+        }
+
+        .social-section img {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            cursor: pointer;
+            filter: invert(100%); /* White color */
+            transition: transform 0.3s ease, filter 0.3s ease;
+            position: relative;
+        }
+
+        .social-section img:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.8));
+        }
+
+        /* Media query for screens smaller than 768px */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .section {
+                margin: 10px 0;
+            }
+
+            .github-section {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <script>
+        function showAlert(platform) {
+            alert(`I use ${platform}`);
+        }
+
+        // Redirect to Gmail compose email when clicked
+        function composeEmail() {
+            window.location.href = 'mailto:mdtanvirahmedsani377@gmail.com';
+        }
+
+        // Redirect to the downloads page
+        function redirectToDownloads() {
+            window.location.href = 'downloads.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const email = document.querySelector('.contact-email');
+            email.addEventListener('click', composeEmail);
+
+            const downloadLink = document.querySelector('.download-link');
+            downloadLink.addEventListener('click', redirectToDownloads);
+        });
+    </script>
+</head>
+<body>
+    <div class="banner-container">
+        <img src="banner.png" alt="Banner">
+    </div>
+    <div class="container">
+        <div class="section contact-section">
+            <img src="user.png" alt="User Icon">
+            <div class="contact-text">Contact Me</div>
+            <p class="contact-email">mdtanvirahmedsani377@gmail.com
+                <span class="popup">Click to email!</span>
+            </p>
+            <div class="github-section">
+                <img src="https://i.postimg.cc/CKbcvD0C/github-logo.png" alt="GitHub" onclick="window.open('https://github.com/GAMINGTIGERSBD', '_blank')">
+                <span onclick="window.open('https://github.com/GAMINGTIGERSBD', '_blank')">GAMINGTIGERSBD</span>
+            </div>
+        </div>
+        <div class="section download-section">
+            <img src="downloading.png" alt="Downloading Icon">
+            <div class="download-text">Download Games</div>
+            <a class="download-link" href="downloads.html">Download Here
+                <span class="popup">Click to download!</span>
+            </a>
+        </div>
+        <div class="section social-section">
+            <div class="social-text">Social Media</div>
+            <div>
+                <img src="https://i.postimg.cc/L4Qq9DrX/pngwing-com-1.png" alt="Instagram Icon" onclick="showAlert('Instagram')">
+            <img src="https://i.postimg.cc/6qPTM6dR/pngwing-com-2.png" alt="Facebook Icon" onclick="showAlert('Facebook')">
+            <img src="https://i.postimg.cc/ZK9WC3SL/pngwing-com-4.png" alt="Discord Icon" onclick="showAlert('Discord')">
+        </div>
+    </div>
+</body>
+</html>
